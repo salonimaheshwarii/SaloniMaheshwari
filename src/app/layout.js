@@ -7,8 +7,11 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Portfolio - Building Colorful Web Experiences",
-  description: "A vibrant portfolio showcasing frontend development skills, projects, and creative web experiences",
+  title: "Saloni Maheshwari",
+  description: "Software Engineer",
+  icons: {
+    icon: "/logo.svg", 
+  },
 };
 
 export default function RootLayout({ children }) {
