@@ -7,175 +7,82 @@ import * as THREE from 'three';
 import ParticleField from './ParticleField';
 import SkillConstellation from './SkillConstellation';
 
-// Realistic Spaceship Component
-function Spaceship({ currentSection }) {
-  const meshRef = useRef();
-  const engineRef = useRef();
+// Professional Planet System Component
+function PlanetSystem({ currentSection, planets }) {
+  const systemRef = useRef();
 
   useFrame((state) => {
-    if (meshRef.current) {
-      // Smooth movement based on current section
-      const targetX = (currentSection - 4) * 2;
-      const targetY = Math.sin(state.clock.elapsedTime * 0.5) * 0.3;
-
-      meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, targetX, 0.02);
-      meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, targetY, 0.02);
-
-      // Banking rotation when moving
-      const bankAngle = (targetX - meshRef.current.position.x) * 0.5;
-      meshRef.current.rotation.z = THREE.MathUtils.lerp(meshRef.current.rotation.z, bankAngle, 0.1);
-      meshRef.current.rotation.y += 0.003;
-    }
-
-    // Animate engine glow
-    if (engineRef.current) {
-      engineRef.current.material.emissiveIntensity = 1.5 + Math.sin(state.clock.elapsedTime * 8) * 0.5;
-      engineRef.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 6) * 0.2);
+    if (systemRef.current) {
+      // Rotate the entire planet system based on current section
+      const targetRotation = (currentSection * Math.PI * 2) / planets.length;
+      systemRef.current.rotation.y = THREE.MathUtils.lerp(
+        systemRef.current.rotation.y,
+        -targetRotation,
+        0.05
+      );
     }
   });
 
   return (
-    <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
-      <group ref={meshRef} position={[0, 0, 2]}>
-        {/* Main fuselage */}
-        <mesh position={[0, 0.2, 0]}>
-          <cylinderGeometry args={[0.15, 0.25, 1.2, 12]} />
-          <meshStandardMaterial
-            color="#e0e0e0"
-            metalness={0.8}
-            roughness={0.2}
-            emissive="#1a1a2e"
-            emissiveIntensity={0.1}
-          />
-        </mesh>
-
-        {/* Cockpit */}
-        <mesh position={[0, 0.6, 0]}>
-          <sphereGeometry args={[0.2, 12, 8]} />
-          <meshStandardMaterial
-            color="#4a90e2"
-            metalness={0.1}
-            roughness={0.1}
-            transparent
-            opacity={0.8}
-            emissive="#1e3a8a"
-            emissiveIntensity={0.3}
-          />
-        </mesh>
-
-        {/* Wings */}
-        <mesh position={[-0.6, -0.1, 0]} rotation={[0, 0, 0.2]}>
-          <boxGeometry args={[0.8, 0.05, 0.3]} />
-          <meshStandardMaterial
-            color="#b0b0b0"
-            metalness={0.7}
-            roughness={0.3}
-          />
-        </mesh>
-        <mesh position={[0.6, -0.1, 0]} rotation={[0, 0, -0.2]}>
-          <boxGeometry args={[0.8, 0.05, 0.3]} />
-          <meshStandardMaterial
-            color="#b0b0b0"
-            metalness={0.7}
-            roughness={0.3}
-          />
-        </mesh>
-
-        {/* Engine nozzles */}
-        <mesh position={[-0.2, -0.6, 0]}>
-          <cylinderGeometry args={[0.08, 0.12, 0.3, 8]} />
-          <meshStandardMaterial
-            color="#404040"
-            metalness={0.9}
-            roughness={0.1}
-          />
-        </mesh>
-        <mesh position={[0.2, -0.6, 0]}>
-          <cylinderGeometry args={[0.08, 0.12, 0.3, 8]} />
-          <meshStandardMaterial
-            color="#404040"
-            metalness={0.9}
-            roughness={0.1}
-          />
-        </mesh>
-
-        {/* Engine flames */}
-        <mesh ref={engineRef} position={[-0.2, -0.9, 0]}>
-          <coneGeometry args={[0.1, 0.4, 6]} />
-          <meshStandardMaterial
-            color="#ff4500"
-            emissive="#ff6b35"
-            emissiveIntensity={1.5}
-            transparent
-            opacity={0.8}
-          />
-        </mesh>
-        <mesh position={[0.2, -0.9, 0]}>
-          <coneGeometry args={[0.1, 0.4, 6]} />
-          <meshStandardMaterial
-            color="#ff4500"
-            emissive="#ff6b35"
-            emissiveIntensity={1.5}
-            transparent
-            opacity={0.8}
-          />
-        </mesh>
-
-        {/* Navigation lights */}
-        <mesh position={[-0.8, -0.1, 0]}>
-          <sphereGeometry args={[0.03, 8, 8]} />
-          <meshStandardMaterial
-            color="#ff0000"
-            emissive="#ff0000"
-            emissiveIntensity={2}
-          />
-        </mesh>
-        <mesh position={[0.8, -0.1, 0]}>
-          <sphereGeometry args={[0.03, 8, 8]} />
-          <meshStandardMaterial
-            color="#00ff00"
-            emissive="#00ff00"
-            emissiveIntensity={2}
-          />
-        </mesh>
-
-        {/* Engine lights */}
-        <pointLight position={[-0.2, -1, 0]} color="#ff6b35" intensity={2} distance={4} />
-        <pointLight position={[0.2, -1, 0]} color="#ff6b35" intensity={2} distance={4} />
-        <pointLight position={[0, 0.6, 0]} color="#4a90e2" intensity={1} distance={3} />
-      </group>
-    </Float>
+    <group ref={systemRef}>
+      {planets.map((planet, index) => (
+        <Planet
+          key={index}
+          position={planet.position}
+          size={planet.size}
+          color={planet.color}
+          emissive={planet.emissive}
+          name={planet.name}
+          currentSection={currentSection}
+          sectionIndex={index}
+          isActive={currentSection === index}
+        />
+      ))}
+    </group>
   );
 }
 
 // Realistic Planet Component
-function Planet({ position, size, color, emissive, currentSection, sectionIndex }) {
+function Planet({ position, size, color, emissive, name, currentSection, sectionIndex, isActive }) {
   const meshRef = useRef();
   const atmosphereRef = useRef();
   const cloudsRef = useRef();
-  const isActive = currentSection === sectionIndex;
+  const labelRef = useRef();
 
   useFrame((state) => {
     if (meshRef.current) {
-      // Realistic planet rotation
-      meshRef.current.rotation.y += 0.005;
+      // Continuous planet rotation
+      meshRef.current.rotation.y += 0.01;
 
-      // Glow effect for active planet
+      // Professional emphasis for active planet
       if (isActive) {
-        meshRef.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 2) * 0.05);
+        // Subtle scale increase for active planet
+        meshRef.current.scale.setScalar(1.2 + Math.sin(state.clock.elapsedTime * 1.5) * 0.1);
       } else {
-        meshRef.current.scale.setScalar(1);
+        // Smaller scale for inactive planets
+        meshRef.current.scale.setScalar(0.8);
       }
     }
 
-    // Animate clouds
-    if (cloudsRef.current) {
-      cloudsRef.current.rotation.y += 0.008;
+    // Animate clouds for active planet
+    if (cloudsRef.current && isActive) {
+      cloudsRef.current.rotation.y += 0.015;
     }
 
-    // Animate atmosphere
+    // Enhanced atmosphere for active planet
     if (atmosphereRef.current) {
-      atmosphereRef.current.material.opacity = 0.3 + Math.sin(state.clock.elapsedTime * 1.5) * 0.1;
+      if (isActive) {
+        atmosphereRef.current.material.opacity = 0.4 + Math.sin(state.clock.elapsedTime * 2) * 0.2;
+        atmosphereRef.current.material.emissiveIntensity = 0.3 + Math.sin(state.clock.elapsedTime * 2) * 0.2;
+      } else {
+        atmosphereRef.current.material.opacity = 0.1;
+        atmosphereRef.current.material.emissiveIntensity = 0.1;
+      }
+    }
+
+    // Label always faces camera
+    if (labelRef.current) {
+      labelRef.current.lookAt(0, 0, 5);
     }
   });
 
@@ -284,42 +191,65 @@ function Planet({ position, size, color, emissive, currentSection, sectionIndex 
           </Float>
         )}
 
-        {/* Active planet effects */}
+        {/* Professional active planet effects */}
         {isActive && (
           <>
-            {/* Orbital glow */}
-            <mesh>
-              <sphereGeometry args={[size * 1.3, 32, 32]} />
+            {/* Professional glow ring */}
+            <mesh rotation={[Math.PI / 2, 0, 0]}>
+              <ringGeometry args={[size * 1.4, size * 1.5, 64]} />
               <meshStandardMaterial
                 color={emissive}
                 transparent
-                opacity={0.15}
+                opacity={0.6}
                 emissive={emissive}
-                emissiveIntensity={0.4}
+                emissiveIntensity={0.8}
+                side={THREE.DoubleSide}
               />
             </mesh>
 
-            {/* Particle ring */}
+            {/* Outer emphasis ring */}
             <mesh rotation={[Math.PI / 2, 0, 0]}>
-              <ringGeometry args={[size * 1.6, size * 1.65, 32]} />
+              <ringGeometry args={[size * 1.8, size * 1.9, 64]} />
               <meshStandardMaterial
-                color={emissive}
+                color="#3b82f6"
                 transparent
-                opacity={0.8}
-                emissive={emissive}
-                emissiveIntensity={1}
+                opacity={0.4}
+                emissive="#3b82f6"
+                emissiveIntensity={0.6}
                 side={THREE.DoubleSide}
               />
             </mesh>
           </>
         )}
 
-        {/* Planet lighting */}
+        {/* Professional section label */}
+        {isActive && (
+          <group ref={labelRef} position={[0, size * 1.8, 0]}>
+            <mesh>
+              <planeGeometry args={[3, 0.6]} />
+              <meshStandardMaterial
+                color="#1e293b"
+                transparent
+                opacity={0.9}
+              />
+            </mesh>
+            <mesh position={[0, 0, 0.01]}>
+              <planeGeometry args={[2.8, 0.4]} />
+              <meshStandardMaterial
+                color="#3b82f6"
+                emissive="#3b82f6"
+                emissiveIntensity={0.3}
+              />
+            </mesh>
+          </group>
+        )}
+
+        {/* Enhanced lighting for active planet */}
         <pointLight
           position={[size * 2, size * 2, size * 2]}
-          color={emissive}
-          intensity={isActive ? 1.5 : 0.5}
-          distance={size * 8}
+          color={isActive ? "#3b82f6" : emissive}
+          intensity={isActive ? 2 : 0.3}
+          distance={size * 10}
         />
       </group>
     </Float>
@@ -368,26 +298,33 @@ function AsteroidField() {
 
 // Main Space Scene
 export default function SpaceScene({ currentSection }) {
-  const planets = [
-    // Earth-like (Home) - Blue with atmosphere
-    { position: [-15, 0, -10], size: 1.5, color: "#4a90e2", emissive: "#1e3a8a", name: "Earth" },
-    // Mars-like (About) - Red desert planet
-    { position: [-10, 3, -8], size: 1.2, color: "#cd5c5c", emissive: "#8b0000", name: "Mars" },
-    // Gas Giant (Education) - Orange/yellow with bands
-    { position: [-5, -2, -6], size: 2, color: "#ffa500", emissive: "#ff8c00", name: "Jupiter" },
-    // Ringed Planet (Experience) - Purple with rings
-    { position: [0, 1, -4], size: 1.8, color: "#9370db", emissive: "#4b0082", name: "Saturn" },
-    // Ocean World (Projects) - Teal with water
-    { position: [5, -1, -6], size: 1.6, color: "#20b2aa", emissive: "#008b8b", name: "Neptune" },
-    // Forest Planet (Skills) - Green with vegetation
-    { position: [10, 2, -8], size: 1.3, color: "#32cd32", emissive: "#228b22", name: "Venus" },
-    // Volcanic World (Achievements) - Red/orange with lava
-    { position: [15, -3, -10], size: 1.1, color: "#ff4500", emissive: "#dc143c", name: "Mercury" },
-    // Ice Planet (Certificates) - Light blue/white
-    { position: [20, 0, -12], size: 1.4, color: "#87ceeb", emissive: "#4682b4", name: "Uranus" },
-    // Crystal Planet (Contact) - Pink/purple crystalline
-    { position: [25, 1, -14], size: 0.9, color: "#da70d6", emissive: "#ba55d3", name: "Pluto" }
-  ];
+  // Professional circular planet arrangement
+  const planets = useMemo(() => {
+    const radius = 12;
+    const planetData = [
+      { size: 1.5, color: "#4a90e2", emissive: "#1e3a8a", name: "Portfolio" },
+      { size: 1.3, color: "#06b6d4", emissive: "#0891b2", name: "About" },
+      { size: 1.4, color: "#8b5cf6", emissive: "#7c3aed", name: "Education" },
+      { size: 1.6, color: "#10b981", emissive: "#059669", name: "Experience" },
+      { size: 1.5, color: "#f59e0b", emissive: "#d97706", name: "Projects" },
+      { size: 1.3, color: "#ef4444", emissive: "#dc2626", name: "Skills" },
+      { size: 1.2, color: "#ec4899", emissive: "#db2777", name: "Achievements" },
+      { size: 1.4, color: "#6366f1", emissive: "#4f46e5", name: "Certifications" },
+      { size: 1.1, color: "#84cc16", emissive: "#65a30d", name: "Contact" }
+    ];
+
+    return planetData.map((planet, index) => {
+      const angle = (index / planetData.length) * Math.PI * 2;
+      return {
+        ...planet,
+        position: [
+          Math.cos(angle) * radius,
+          Math.sin(angle * 0.5) * 2, // Slight vertical variation
+          Math.sin(angle) * radius - 8
+        ]
+      };
+    });
+  }, []);
 
   return (
     <>
@@ -422,43 +359,20 @@ export default function SpaceScene({ currentSection }) {
       {/* Stars background */}
       <Stars radius={300} depth={60} count={20000} factor={7} saturation={0} fade speed={1} />
 
-      {/* Spaceship */}
-      <Spaceship currentSection={currentSection} />
+      {/* Professional Planet System */}
+      <PlanetSystem currentSection={currentSection} planets={planets} />
 
-      {/* Planets */}
-      {planets.map((planet, index) => (
-        <Planet
-          key={index}
-          position={planet.position}
-          size={planet.size}
-          color={planet.color}
-          emissive={planet.emissive}
-          currentSection={currentSection}
-          sectionIndex={index}
-        />
-      ))}
+      {/* Subtle particle field for depth */}
+      <ParticleField count={800} />
 
-      {/* Asteroid field */}
-      <AsteroidField />
-
-      {/* Particle field */}
-      <ParticleField count={2000} />
-
-      {/* Skill constellation (only show on skills section) */}
-      {currentSection === 5 && (
-        <group position={[0, 0, 2]}>
-          <SkillConstellation />
-        </group>
-      )}
-
-      {/* Nebula effect */}
-      <mesh position={[0, 0, -30]} scale={[50, 50, 1]}>
+      {/* Professional background gradient */}
+      <mesh position={[0, 0, -25]} scale={[40, 40, 1]}>
         <planeGeometry args={[1, 1]} />
         <meshStandardMaterial
-          color="#1a0033"
+          color="#0f172a"
           transparent
-          opacity={0.3}
-          emissive="#4a148c"
+          opacity={0.6}
+          emissive="#1e293b"
           emissiveIntensity={0.1}
         />
       </mesh>

@@ -20,17 +20,20 @@ export default function Navigation({
         className="fixed top-0 left-0 right-0 z-40 p-6"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="bg-gray-900/80 backdrop-blur-md border border-cyan-400/30 rounded-2xl px-8 py-4 shadow-2xl shadow-cyan-400/10">
+          <div className="professional-card px-8 py-4">
             <div className="flex items-center justify-between">
               {/* Logo */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center space-x-3"
+                whileHover={{ scale: 1.02 }}
+                className="flex items-center space-x-4"
               >
-                <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/50">
-                  <span className="text-black font-bold text-lg">S</span>
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-lg">SM</span>
                 </div>
-                <span className="text-xl font-bold text-cyan-400"></span>
+                <div className="flex flex-col">
+                  <span className="text-lg font-semibold text-slate-100">SALONI MAHESHWARI</span>
+                  <span className="text-xs text-slate-400 font-medium">Software Engineer</span>
+                </div>
               </motion.div>
 
               {/* Desktop Navigation */}
@@ -41,8 +44,8 @@ export default function Navigation({
                     onClick={() => onSectionChange(index)}
                     className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                       currentSection === index
-                        ? "bg-cyan-400/20 text-cyan-400 shadow-lg shadow-cyan-400/30"
-                        : "text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/10"
+                        ? "bg-blue-500/20 text-blue-400 shadow-lg border border-blue-500/30"
+                        : "text-slate-300 hover:text-blue-400 hover:bg-blue-500/10"
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}

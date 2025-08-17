@@ -28,22 +28,22 @@ export default function LoadingScreen() {
       className="fixed inset-0 z-50 bg-black flex items-center justify-center"
     >
       <div className="text-center">
-        {/* Animated Spaceship */}
+        {/* Professional Loading Icon */}
         <motion.div
           animate={{
             rotate: 360,
-            scale: [1, 1.1, 1]
+            scale: [1, 1.05, 1]
           }}
           transition={{
-            rotate: { duration: 4, repeat: Infinity, ease: "linear" },
+            rotate: { duration: 3, repeat: Infinity, ease: "linear" },
             scale: { duration: 2, repeat: Infinity }
           }}
-          className="w-20 h-20 mx-auto mb-8"
+          className="w-16 h-16 mx-auto mb-8"
         >
           <div className="relative">
-            <div className="w-20 h-20 border-4 border-cyan-400/30 rounded-full"></div>
-            <div className="absolute inset-2 border-2 border-cyan-400 rounded-full"></div>
-            <div className="absolute inset-6 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50"></div>
+            <div className="w-16 h-16 border-4 border-blue-500/30 rounded-lg"></div>
+            <div className="absolute inset-2 border-2 border-blue-500 rounded-lg"></div>
+            <div className="absolute inset-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg shadow-lg"></div>
           </div>
         </motion.div>
 
@@ -51,15 +51,15 @@ export default function LoadingScreen() {
         <motion.h1
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="text-4xl font-bold text-cyan-400 mb-4"
+          className="text-3xl font-semibold text-blue-400 mb-4"
         >
           LOADING PORTFOLIO
         </motion.h1>
 
         {/* Progress Bar */}
-        <div className="w-80 h-2 bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden">
+        <div className="w-80 h-3 bg-slate-800 rounded-lg mx-auto mb-4 overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full shadow-lg shadow-cyan-400/50"
+            className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg shadow-lg"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.1 }}
@@ -67,7 +67,7 @@ export default function LoadingScreen() {
         </div>
 
         {/* Progress Text */}
-        <p className="text-cyan-300 text-lg font-mono">
+        <p className="text-slate-300 text-lg font-medium">
           {progress}% COMPLETE
         </p>
 

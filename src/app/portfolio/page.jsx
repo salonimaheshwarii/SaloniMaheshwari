@@ -10,15 +10,15 @@ import SectionContent from "../components/SectionContent";
 import ClientOnly from "../components/ClientOnly";
 
 const sections = [
-  { id: "home", title: "Welcome", planet: "Earth" },
+  { id: "home", title: "Portfolio", planet: "Earth" },
   { id: "about", title: "About", planet: "Mars" },
-  { id: "education", title: "Knowledge Station", planet: "Jupiter" },
+  { id: "education", title: "Education", planet: "Jupiter" },
   { id: "experience", title: "Experience", planet: "Saturn" },
   { id: "projects", title: "Projects", planet: "Neptune" },
   { id: "skills", title: "Skills", planet: "Venus" },
   { id: "achievements", title: "Achievements", planet: "Mercury" },
   { id: "certificates", title: "Certifications", planet: "Uranus" },
-  { id: "contact", title: "Communication Hub", planet: "Pluto" },
+  { id: "contact", title: "Contact", planet: "Pluto" },
 ];
 
 export default function Portfolio3D() {
@@ -174,18 +174,18 @@ export default function Portfolio3D() {
             {sections.map((_, index) => (
               <motion.div
                 key={index}
-                className={`w-3 h-3 rounded-full mb-4 cursor-pointer border-2 ${
+                className={`w-3 h-3 rounded-lg mb-4 cursor-pointer border-2 transition-all duration-300 ${
                   index === currentSection
-                    ? "bg-cyan-400 border-cyan-400 shadow-lg shadow-cyan-400/50"
-                    : "bg-transparent border-gray-400 hover:border-cyan-400"
+                    ? "bg-blue-500 border-blue-500 shadow-lg shadow-blue-500/50"
+                    : "bg-transparent border-slate-400 hover:border-blue-400"
                 }`}
                 onClick={() => setCurrentSection(index)}
                 whileHover={{ scale: 1.2 }}
                 animate={{
                   boxShadow:
                     index === currentSection
-                      ? "0 0 20px rgba(34, 211, 238, 0.8)"
-                      : "0 0 0px rgba(34, 211, 238, 0)",
+                      ? "0 0 15px rgba(59, 130, 246, 0.6)"
+                      : "0 0 0px rgba(59, 130, 246, 0)",
                 }}
               />
             ))}

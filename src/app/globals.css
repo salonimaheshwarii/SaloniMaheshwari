@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --space-primary: #00bcd4;
-  --space-secondary: #004d5c;
-  --space-accent: #ff6b35;
-  --space-glow: rgba(0, 188, 212, 0.3);
+  --background: #0a0a0f;
+  --foreground: #f8fafc;
+  --primary: #3b82f6;
+  --secondary: #1e293b;
+  --accent: #06b6d4;
+  --muted: #64748b;
+  --border: #334155;
+  --card-bg: rgba(30, 41, 59, 0.8);
+  --glow: rgba(59, 130, 246, 0.2);
 }
 
 @theme inline {
@@ -23,27 +26,27 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom scrollbar for space theme */
+/* Professional scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00bcd4, #004d5c);
-  border-radius: 4px;
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #26c6da, #00695c);
+  background: linear-gradient(180deg, #60a5fa, #0891b2);
 }
 
-/* Glowing text effect */
+/* Professional text glow */
 .glow-text {
-  text-shadow: 0 0 10px var(--space-glow), 0 0 20px var(--space-glow), 0 0 30px var(--space-glow);
+  text-shadow: 0 0 10px var(--glow), 0 0 20px var(--glow);
 }
 
 /* Animated background stars */
@@ -64,14 +67,12 @@ body {
   to { transform: translateX(200px); }
 }
 
-/* Cosmic gradient backgrounds */
-.cosmic-gradient {
+/* Professional gradient backgrounds */
+.professional-gradient {
   background: linear-gradient(135deg,
-    rgba(0, 188, 212, 0.1) 0%,
-    rgba(76, 175, 80, 0.1) 25%,
-    rgba(156, 39, 176, 0.1) 50%,
-    rgba(255, 107, 53, 0.1) 75%,
-    rgba(0, 188, 212, 0.1) 100%);
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(6, 182, 212, 0.1) 50%,
+    rgba(30, 41, 59, 0.1) 100%);
 }
 
 /* Floating animation */
@@ -84,14 +85,28 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
-/* Pulse glow effect */
+/* Professional pulse effect */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px var(--space-glow); }
-  50% { box-shadow: 0 0 20px var(--space-glow), 0 0 30px var(--space-glow); }
+  0%, 100% { box-shadow: 0 0 5px var(--glow); }
+  50% { box-shadow: 0 0 15px var(--glow), 0 0 25px var(--glow); }
 }
 
 .pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Professional card styles */
+.professional-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.professional-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
 }
 
 /* Smooth transitions */

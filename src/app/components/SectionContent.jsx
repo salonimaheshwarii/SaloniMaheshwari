@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const sectionData = {
   home: {
-    title: "Welcome to My Space",
+    title: "Portfolio",
     subtitle: "SALONI MAHESHWARI - Software Engineer",
     content: "Welcome to my professional portfolio. I am a dedicated software engineer specializing in cloud technologies, full-stack development, and scalable system architecture with expertise in modern web technologies.",
     cta: "View Portfolio"
@@ -16,7 +16,7 @@ const sectionData = {
     skills: ["React.js", "Next.js", "AWS", "Docker", "Terraform", "TypeScript", "Vue.js", "Node.js"]
   },
   education: {
-    title: "Knowledge Station",
+    title: "Education",
     subtitle: "Academic Background",
     content: "My educational foundation in Computer Science has provided me with comprehensive knowledge in software engineering principles, algorithms, and modern development practices.",
     items: [
@@ -72,7 +72,7 @@ const sectionData = {
     ]
   },
   skills: {
-    title: "Skill Constellation",
+    title: "Technical Skills",
     subtitle: "Core Competencies",
     content: "Comprehensive technical expertise spanning frontend development, backend systems, cloud infrastructure, and modern development tools.",
     categories: [
@@ -128,7 +128,7 @@ const sectionData = {
     ]
   },
   contact: {
-    title: "Communication Hub",
+    title: "Contact",
     subtitle: "Professional Contact Information",
     content: "I am open to discussing new opportunities, collaborations, and professional engagements. Please feel free to reach out through any of the following channels.",
     contacts: [
@@ -176,17 +176,17 @@ export default function SectionContent({ section, onProjectClick }) {
       <div className="max-w-4xl mx-auto text-center">
         {/* Main Title */}
         <motion.div variants={itemVariants} className="mb-8">
-          <h1 className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 mb-4">
+          <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-500 to-blue-600 mb-4">
             {data.title}
           </h1>
-          <h2 className="text-2xl md:text-3xl text-cyan-300 font-light">
+          <h2 className="text-xl md:text-2xl text-slate-300 font-medium">
             {data.subtitle}
           </h2>
         </motion.div>
 
         {/* Content */}
         <motion.div variants={itemVariants} className="mb-12">
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
             {data.content}
           </p>
         </motion.div>
@@ -198,7 +198,7 @@ export default function SectionContent({ section, onProjectClick }) {
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(34, 211, 238, 0.5)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-lg rounded-full shadow-lg shadow-cyan-400/30 hover:shadow-cyan-400/50 transition-all duration-300"
+              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold text-lg rounded-lg shadow-lg hover:shadow-blue-500/30 transition-all duration-300 border border-blue-500/20"
             >
               {data.cta}
             </motion.button>
@@ -214,7 +214,7 @@ export default function SectionContent({ section, onProjectClick }) {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="px-4 py-2 bg-cyan-400/20 border border-cyan-400/50 rounded-full text-cyan-400 font-medium"
+                  className="px-4 py-2 bg-blue-500/20 border border-blue-500/50 rounded-lg text-blue-400 font-medium"
                 >
                   {skill}
                 </motion.div>
@@ -232,14 +232,14 @@ export default function SectionContent({ section, onProjectClick }) {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.2 }}
                   whileHover={{ scale: 1.02, x: 10 }}
-                  className="bg-gray-900/50 backdrop-blur-sm border border-cyan-400/30 rounded-xl p-6 text-left"
+                  className="professional-card p-6 text-left"
                 >
-                  <h3 className="text-xl font-bold text-cyan-400 mb-2">{item.title}</h3>
-                  <p className="text-gray-300 mb-1">
+                  <h3 className="text-xl font-bold text-blue-400 mb-2">{item.title}</h3>
+                  <p className="text-slate-300 mb-1 font-medium">
                     {item.institution || item.company} • {item.year || item.period}
                   </p>
                   {item.description && (
-                    <p className="text-gray-400 text-sm">{item.description}</p>
+                    <p className="text-slate-400 text-sm">{item.description}</p>
                   )}
                 </motion.div>
               ))}
@@ -261,16 +261,16 @@ export default function SectionContent({ section, onProjectClick }) {
                     boxShadow: "0 20px 40px rgba(34, 211, 238, 0.3)"
                   }}
                   onClick={() => project.link ? window.open(project.link, '_blank') : onProjectClick(project)}
-                  className="bg-gray-900/50 backdrop-blur-sm border border-cyan-400/30 rounded-xl p-6 cursor-pointer hover:border-cyan-400/60 transition-all duration-300"
+                  className="professional-card p-6 cursor-pointer hover:border-blue-500/60 transition-all duration-300"
                 >
-                  <div className="flex items-start justify-between mb-2">
-                    <h3 className="text-xl font-bold text-cyan-400">{project.name}</h3>
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-xl font-bold text-blue-400">{project.name}</h3>
                     {project.link && (
-                      <span className="text-cyan-400 text-sm">🔗</span>
+                      <span className="text-blue-400 text-sm">🔗</span>
                     )}
                   </div>
-                  <p className="text-sm text-cyan-300 mb-3">{project.tech}</p>
-                  <p className="text-gray-300 text-sm">{project.description}</p>
+                  <p className="text-sm text-cyan-400 mb-3 font-medium">{project.tech}</p>
+                  <p className="text-slate-300 text-sm leading-relaxed">{project.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -286,9 +286,9 @@ export default function SectionContent({ section, onProjectClick }) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.2 }}
                   whileHover={{ scale: 1.02 }}
-                  className="bg-gray-900/50 backdrop-blur-sm border border-cyan-400/30 rounded-xl p-4 shadow-lg shadow-cyan-400/10 flex-1 min-w-[250px] max-w-[300px]"
+                  className="professional-card p-4 flex-1 min-w-[250px] max-w-[300px]"
                 >
-                  <h3 className="text-lg font-bold text-cyan-400 mb-3 text-center">{category.name}</h3>
+                  <h3 className="text-lg font-bold text-blue-400 mb-3 text-center">{category.name}</h3>
                   <div className="flex flex-wrap justify-center gap-2">
                     {category.skills.map((skill, skillIndex) => (
                       <motion.div
@@ -301,7 +301,7 @@ export default function SectionContent({ section, onProjectClick }) {
                           rotate: 2,
                           boxShadow: "0 0 15px rgba(34, 211, 238, 0.5)"
                         }}
-                        className="px-2 py-1 bg-cyan-400/20 border border-cyan-400/50 rounded-full text-cyan-400 font-medium text-xs cursor-pointer transition-all duration-200 hover:bg-cyan-400/30 hover:border-cyan-400"
+                        className="px-2 py-1 bg-blue-500/20 border border-blue-500/50 rounded-md text-blue-400 font-medium text-xs cursor-pointer transition-all duration-200 hover:bg-blue-500/30 hover:border-blue-500"
                       >
                         {skill}
                       </motion.div>
