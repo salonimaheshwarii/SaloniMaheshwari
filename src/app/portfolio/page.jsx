@@ -1140,7 +1140,7 @@ const Projects = () => {
       title: "Clipify",
       description:
         "Contributed as a frontend designer and developer to Clipify, an open-source, cross-device data sharing tool focused on privacy and simplicity.",
-      tags: ["HTML", "Go", "Frontend Design", "API Integration"],
+      tags: ["HTML", "Go", "Frontend Design", "Cross-Device Connection"],
       gradient: "from-pink-400 to-orange-400",
       thumbnail: "📋",
       github: "https://github.com/lovepurohit/clipify",
