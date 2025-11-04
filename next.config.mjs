@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  basePath: '/SALONIMAHESHWARI',
-  assetPrefix: '/SALONIMAHESHWARI/',
+  basePath: '/SaloniMaheshwari',
+  assetPrefix: '/SaloniMaheshwari/',
 
   images: {
     unoptimized: true,
