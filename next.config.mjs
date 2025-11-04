@@ -1,12 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  basePath: "/SaloniMaheshwari",
-  assetPrefix: "/SaloniMaheshwari/",
-  images: {
-    unoptimized: true,
-  },
-  trailingSlash: true,
+  reactStrictMode: true, // Enables React's Strict Mode
 };
 
 export default nextConfig;

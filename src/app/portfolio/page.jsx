@@ -2067,7 +2067,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-1 gap-16 items-center justify-center">
           <motion.div
             className="space-y-8"
             initial={{ opacity: 0, x: -50 }}
@@ -2169,97 +2169,6 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
-
-          <motion.div
-            className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Name</label>
-                  <motion.input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-300"
-                    placeholder="Your name"
-                    required
-                    whileFocus={{ scale: 1.02 }}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Email
-                  </label>
-                  <motion.input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-300"
-                    placeholder="your@email.com"
-                    required
-                    whileFocus={{ scale: 1.02 }}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Message
-                  </label>
-                  <motion.textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-300 resize-none"
-                    placeholder="Tell me about your project..."
-                    required
-                    whileFocus={{ scale: 1.02 }}
-                  />
-                </div>
-
-                <motion.button
-                  type="submit"
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-pink-400 via-orange-400 to-yellow-400 text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {isTyping ? "Typing..." : "Send Message"}
-                </motion.button>
-              </form>
-            ) : (
-              <motion.div
-                className="text-center py-12"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <motion.div
-                  className="text-6xl mb-4"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 10, -10, 0],
-                  }}
-                  transition={{ duration: 0.6 }}
-                >
-                  🎉
-                </motion.div>
-                <h3 className="text-2xl font-bold mb-2 text-pink-400">
-                  Message Sent!
-                </h3>
-                <p className="text-gray-300">
-                  Thank you for reaching out. I'll get back to you soon!
-                </p>
-              </motion.div>
-            )}
           </motion.div>
         </div>
       </div>
