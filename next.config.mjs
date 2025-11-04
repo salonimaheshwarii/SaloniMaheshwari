@@ -2,13 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  images: {
-    unoptimized: true,
-  },
   basePath: '/SALONIMAHESHWARI',
   assetPrefix: '/SALONIMAHESHWARI/',
 
-
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
