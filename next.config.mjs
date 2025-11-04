@@ -6,6 +6,8 @@ const nextConfig = {
     unoptimized: true,
   },
   basePath: '/SALONIMAHESHWARI',
+  assetPrefix: '/SALONIMAHESHWARI/',
+
 
 };
 
