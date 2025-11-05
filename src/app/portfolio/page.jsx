@@ -755,7 +755,7 @@ const Hero = () => {
           <br />
         </motion.p>
 
-        <motion.div
+        {/* <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -777,7 +777,7 @@ const Hero = () => {
             Contact
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-400 to-orange-400 transition-all duration-300 group-hover:w-full" />
           </motion.a>
-        </motion.div>
+        </motion.div> */}
 
         {/* Social icons with enhanced animations */}
         <motion.div
@@ -1152,21 +1152,21 @@ const Projects = () => {
       tags: ["React.js", "Context API", "Responsive Design", "Note-taking"],
       gradient: "from-teal-400 to-blue-400",
       thumbnail: "📝",
-      github: "https://github.com/Google-Keep-Clone",
+      github: "https://github.com/salonimaheshwarii/Google-Keep-Clone",
     },
+    // {
+    //   title: "MERN Stack Applications",
+    //   description:
+    //     "Explored MERN stack for full-stack web development, creating robust applications with modern web technologies.",
+    //   tags: [".Net", "SQL", "React.js"],
+    //   gradient: "from-blue-400 to-purple-400",
+    //   thumbnail: "🚀",
+    //   github: "https://github.com/salonimaheshwarii/Travalecious",
+    // },
     {
-      title: "MERN Stack Applications",
+      title: "WebShot Chrome Extension",
       description:
-        "Explored MERN stack for full-stack web development, creating robust applications with modern web technologies.",
-      tags: [".Net", "SQL", "React.js"],
-      gradient: "from-blue-400 to-purple-400",
-      thumbnail: "🚀",
-      github: "https://github.com/salonimaheshwarii/Travalecious",
-    },
-    {
-      title: "Chrome Extensions",
-      description:
-        "Developed Chrome extensions to enhance browser functionality and user productivity with innovative features.",
+        "Developed Chrome extensions to capture full-page screenshots, enhancing user productivity with seamless web capture functionality.",
       tags: ["Chrome Extensions", "JavaScript", "Browser APIs", "Productivity"],
       gradient: "from-green-400 to-teal-400",
       thumbnail: "🔌",
@@ -2093,12 +2093,6 @@ const Contact = () => {
                   label: "Email",
                   value: "salonimaheshwari2113@gmail.com",
                   color: "from-pink-400 to-orange-400",
-                },
-                {
-                  icon: "📱",
-                  label: "Phone",
-                  value: "+91 7568305343",
-                  color: "from-teal-400 to-blue-400",
                 },
                 {
                   icon: "💼",
