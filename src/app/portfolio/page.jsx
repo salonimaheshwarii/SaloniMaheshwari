@@ -794,7 +794,7 @@ const Hero = () => {
             },
             {
               name: "linkedin",
-              url: "https://linkedin.com/in/saloni-maheshwari",
+              url: "https://linkedin.com/in/saloni-maheshwari-756830/",
               icon: "💼",
             },
             {
